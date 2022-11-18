@@ -50,7 +50,7 @@ typedef struct Player {
 typedef struct Ball {
     Vector2 position;
     Vector2 speed;
-    int radius;
+    float radius;
     bool active;
 } Ball;
 
