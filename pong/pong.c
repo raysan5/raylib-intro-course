@@ -1,23 +1,17 @@
 /*******************************************************************************************
 *
-*   raylib [core] example - Basic window
+*   raylib pong
 *
-*   Welcome to raylib!
+*   COMPILATION (Windows - MinGW):
+*       gcc -o $(NAME_PART).exe $(FILE_NAME) -lraylib -lopengl32 -lgdi32 -lwinmm -Wall -std=c99
 *
-*   To test examples, just press F6 and execute raylib_compile_execute script
-*   Note that compiled executable is placed in the same folder as .c file
-*
-*   You can find all basic examples on C:\raylib\raylib\examples folder or
-*   raylib official webpage: www.raylib.com
-*
-*   Enjoy using raylib. :)
-*
-*   Example originally created with raylib 1.0, last time updated with raylib 1.0
+*   COMPILATION (Linux - GCC):
+*       gcc -o $(NAME_PART).exe $(FILE_NAME) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 *
 *   Example licensed under an unmodified zlib/libpng license, which is an OSI-certified,
 *   BSD-like license that allows static linking with closed source software
 *
-*   Copyright (c) 2013-2022 Ramon Santamaria (@raysan5)
+*   Copyright (c) 2022 Ramon Santamaria (@raysan5)
 *
 ********************************************************************************************/
 
@@ -66,7 +60,9 @@ int main(void)
     //Texture2D texLogo = LoadTextureFromImage(imLogo);
     //UnloadImage(imLogo);
     
-    Font fntTitle = LoadFont("resources/pixantiqua.ttf");
+    //Font fntTitle = LoadFont("resources/pixantiqua.ttf");     // Font size: 32px default
+    Font fntTitle = LoadFontEx("resources/pixantiqua.ttf", 12, 0, 0); // Font size: pixel-perfect
+    SetTextureFilter(fntTitle.texture, TEXTURE_FILTER_POINT);
     
     Sound fxStart = LoadSound("resources/start.wav");
     Sound fxPong = LoadSound("resources/pong.wav");
@@ -159,8 +155,8 @@ int main(void)
                     else if ((ballPosition.x + ballRadius) > GetScreenWidth()) playerScore += 1000;
                     
                     // Player movement logic
-                    if (IsKeyDown(KEY_UP)) player.y -= 8;
-                    else if (IsKeyDown(KEY_DOWN)) player.y += 8;
+                    if (IsKeyDown(KEY_UP)) player.y -= playerSpeed;
+                    else if (IsKeyDown(KEY_DOWN)) player.y += playerSpeed;
                     
                     if (player.y <= 0) player.y = 0;
                     else if ((player.y + player.height) >= screenHeight) player.y = screenHeight - player.height;
@@ -227,7 +223,7 @@ int main(void)
                     //DrawRectangle(0, 0, screenWidth, screenHeight, GREEN);
                     //DrawText("SCREEN TITLE", 10, 10, 30, DARKGREEN);
                     
-                    DrawTextEx(fntTitle, "SUPER PONG", (Vector2){ 200, 100 }, 64, 4, LIME);
+                    DrawTextEx(fntTitle, "SUPER PONG", (Vector2){ 200, 100 }, fntTitle.baseSize*6, 4, LIME);
                     
                     if ((framesCounter/30)%2) DrawText("PRESS ENTER to START", 200, 300, 30, BLACK);
                     
