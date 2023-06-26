@@ -87,7 +87,7 @@ int main()
     // LESSON 06: Fonts loading and text drawing
     Font font = LoadFont("resources/setback.png");
     
-    // LESSSON 07: Sounds and music loading and playing
+    // LESSON 07: Sounds and music loading and playing
     InitAudioDevice();              // Initialize audio system
     
     Sound fxStart = LoadSound("resources/start.wav");
@@ -101,7 +101,7 @@ int main()
     // Game required variables
     GameScreen screen = LOGO;       // Current game screen state
     
-    int framesCounter = 0;          // General pourpose frames counter
+    int framesCounter = 0;          // General purpose frames counter
     int gameResult = -1;            // Game result: 0 - Loose, 1 - Win, -1 - Not defined
     bool gamePaused = false;        // Game paused state toggle
     
@@ -281,7 +281,7 @@ int main()
             default: break;
         }
         
-        // LESSSON 07: Sounds and music loading and playing
+        // LESSON 07: Sounds and music loading and playing
         // NOTE: Music buffers must be refilled if consumed
         UpdateMusicStream(music);
         //----------------------------------------------------------------------------------
@@ -394,12 +394,12 @@ int main()
     // LESSON 06: Fonts loading and text drawing
     UnloadFont(font);
     
-    // LESSSON 07: Sounds and music loading and playing
+    // LESSON 07: Sounds and music loading and playing
     UnloadSound(fxStart);
     UnloadSound(fxBounce);
     UnloadSound(fxExplode);
     
-    UnloadMusicStream(music);   // Unload music streamming buffers
+    UnloadMusicStream(music);   // Unload music streaming buffers
     
     CloseAudioDevice();         // Close audio device connection
     
