@@ -42,69 +42,69 @@ int main()
 
     // LESSON 01: Window initialization and screens management
     InitWindow(screenWidth, screenHeight, "PROJECT: BLOCKS GAME");
-    
+
     // NOTE: Load resources (textures, fonts, audio) after Window initialization
 
     // Game required variables
     GameScreen screen = LOGO;       // Current game screen state
-    
-    int framesCounter = 0;          // General pourpose frames counter
+
+    int framesCounter = 0;          // General purpose frames counter
     int gameResult = -1;            // Game result: 0 - Loose, 1 - Win, -1 - Not defined
     bool gamePaused = false;        // Game paused state toggle
-    
+
     // TODO: Define and Initialize game variables
-        
+
     SetTargetFPS(60);               // Set desired framerate (frames per second)
     //--------------------------------------------------------------------------------------
-    
+
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
         //----------------------------------------------------------------------------------
-        switch(screen) 
+        switch(screen)
         {
-            case LOGO: 
+            case LOGO:
             {
                 // Update LOGO screen data here!
-                
+
                 framesCounter++;
-                
-                if (framesCounter > 180) 
+
+                if (framesCounter > 180)
                 {
                     screen = TITLE;    // Change to TITLE screen after 3 seconds
                     framesCounter = 0;
                 }
-                
+
             } break;
-            case TITLE: 
+            case TITLE:
             {
                 // Update TITLE screen data here!
-                
+
                 framesCounter++;
-                
+
                 // LESSON 03: Inputs management (keyboard, mouse)
                 if (IsKeyPressed(KEY_ENTER)) screen = GAMEPLAY;
-                
+
             } break;
             case GAMEPLAY:
-            { 
+            {
                 // Update GAMEPLAY screen data here!
 
                 if (!gamePaused)
                 {
                     // TODO: Gameplay logic
                 }
-                
+
                 if (IsKeyPressed(KEY_ENTER)) screen = ENDING;
 
             } break;
-            case ENDING: 
+            case ENDING:
             {
                 // Update END screen data here!
-                
+
                 framesCounter++;
-                
+
                 // LESSON 03: Inputs management (keyboard, mouse)
                 if (IsKeyPressed(KEY_ENTER)) screen = TITLE;
 
@@ -112,14 +112,14 @@ int main()
             default: break;
         }
         //----------------------------------------------------------------------------------
-        
+
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-        
+
             ClearBackground(RAYWHITE);
-            
-            switch(screen) 
+
+            switch(screen)
             {
                 case LOGO:
                 {
@@ -131,41 +131,47 @@ int main()
                 case TITLE:
                 {
                     // TODO: Draw TITLE screen here!
+                    char const* text = "PRESS ENTER to JUMP to GAMEPLAY SCREEN";
+                    int fontSize = 20;
                     DrawRectangle(0, 0, screenWidth, screenHeight, GREEN);
                     DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
-                    DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
+                    DrawText(text, screenWidth/2 - MeasureText(text, fontSize)/2, 220, fontSize, DARKGREEN);
 
                 } break;
                 case GAMEPLAY:
                 {
                     // TODO: Draw GAMEPLAY screen here!
+                    char* text = "PRESS ENTER to JUMP to ENDING SCREEN";
+                    int fontSize = 20;
                     DrawRectangle(0, 0, screenWidth, screenHeight, PURPLE);
                     DrawText("GAMEPLAY SCREEN", 20, 20, 40, MAROON);
-                    DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
+                    DrawText(text, screenWidth/2 - MeasureText(text, fontSize)/2, 220, fontSize, MAROON);
 
                 } break;
                 case ENDING:
                 {
                     // TODO: Draw ENDING screen here!
+                    char* text = "PRESS ENTER to RETURN to TITLE SCREEN";
+                    int fontSize = 20;
                     DrawRectangle(0, 0, screenWidth, screenHeight, BLUE);
                     DrawText("ENDING SCREEN", 20, 20, 40, DARKBLUE);
-                    DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+                    DrawText(text, screenWidth/2 - MeasureText(text, fontSize)/2, 220, fontSize, DARKBLUE);
 
                 } break;
                 default: break;
             }
-        
+
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    
+
     // NOTE: Unload any loaded resources (texture, fonts, audio)
 
     CloseWindow();              // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
-    
+
     return 0;
 }
