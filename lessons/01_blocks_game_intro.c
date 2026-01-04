@@ -49,7 +49,7 @@ int main()
     GameScreen screen = LOGO;       // Current game screen state
     
     int framesCounter = 0;          // General pourpose frames counter
-    int gameResult = -1;            // Game result: 0 - Loose, 1 - Win, -1 - Not defined
+    int gameResult = -1;            // Game result: 0 - Lose, 1 - Win, -1 - Not defined
     bool gamePaused = false;        // Game paused state toggle
     
     // TODO: Define and Initialize game variables
