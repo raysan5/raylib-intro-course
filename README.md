@@ -152,7 +152,7 @@ bool CheckCollisionRecs(Rectangle rec1, Rectangle rec2);                        
 bool CheckCollisionCircles(Vector2 center1, float radius1, Vector2 center2, float radius2); // Check collision between two circles
 bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);                  // Check collision between circle and rectangle
 ```
-Those functions return *true* if the involved rectangles/circles collide, is up to the user to resolve that collision in an appropiate way. Keep always in mind that collisions in games are always treatened as two separate parts: **detection** and **resolution**.
+Those functions return *true* if the involved rectangles/circles collide, is up to the user to resolve that collision in an appropriate way. Keep always in mind that collisions in games are always treated as two separate parts: **detection** and **resolution**.
 
 
 ### Lesson 05: Textures loading and drawing
@@ -161,7 +161,7 @@ Those functions return *true* if the involved rectangles/circles collide, is up 
 
 Actually texture loading and drawing is a quite complex process: 
 
-First, the image file is loaded, image data is usually decompressed and decodified (.png, .jpg) to obtain a plain array of pixel data; every pixel can be interpreted with different pixel formats (8bit, 16bit, 32bit...) but usually raylib translates that data to RGBA 32Bit (4 channels - RedGrenBlueAlpha, 8bit per channel). Image data is loaded into RAM.
+First, the image file is loaded, image data is usually decompressed and decoded (.png, .jpg) to obtain a plain array of pixel data; every pixel can be interpreted with different pixel formats (8bit, 16bit, 32bit...) but usually raylib translates that data to RGBA 32Bit (4 channels - RedGrenBlueAlpha, 8bit per channel). Image data is loaded into RAM.
 
 Second, that image data must be uploaded to VRAM memory (GPU) to be used on screen rendering. 
 
